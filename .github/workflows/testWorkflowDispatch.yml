@@ -1,0 +1,25 @@
+name: Test workflow_dispatch
+
+on:
+    workflow_dispatch:
+        inputs:
+            arg1:
+                description: 'arg1'
+                required: true
+                default: 'no arg1'
+            arg2:
+                description: 'arg2'
+                required: false
+                default: 'no arg2'
+
+jobs:
+    test-workflow-dispatch:
+        name: test-workflow-dispatch
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - name: Print args
+              run: |
+                  echo "Arg1: ${{ github.event.inputs.arg1 }}"
+                  echo "Arg2: ${{ github.event.inputs.arg2 }}"
+
