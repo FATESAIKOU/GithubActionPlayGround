@@ -1,0 +1,23 @@
+name: test_DLBT
+
+on:
+    workflow_dispatch:
+        inputs:
+            link:
+                description: 'link to download'
+                required: true
+
+jobs:
+    test-dlbt:
+        name: test-dlbt
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: '14'
+            - name: install webtorrent
+              run: npm install webtorrent-cli -g
+            - name: download bt
+              run: webtorrent "${{ github.event.inputs.link }}"
+
