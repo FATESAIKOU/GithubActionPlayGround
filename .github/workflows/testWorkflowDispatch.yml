@@ -22,4 +22,8 @@ jobs:
               run: |
                   echo "Arg1: ${{ github.event.inputs.arg1 }}"
                   echo "Arg2: ${{ github.event.inputs.arg2 }}"
+                  echo "Secret ENV Arg1: $SECRET"
+                  echo "Secret Arg1: ${{ secrets[github.event.inputs.arg1] }}"
+              env:
+                  SECRET: ${{ secrets[github.event.inputs.arg1] }}
 
